@@ -2,7 +2,7 @@
 
 const cor_attendance_m = require('../../models/cor_attendance_m');
 require('dotenv').config();
-const {verifyToken} = require("../../middlewares/verifyToken");
+const {accessToken} = require("../../middlewares/verifyToken");
 
 
 const handlePunchIn = async (req, res) => {
@@ -12,8 +12,8 @@ const handlePunchIn = async (req, res) => {
         console.log(punch_in_latitude, punch_in_longitude, punch_in_address);
 
         // Extract data from token
-        const token = req.headers.authorization.split(" ")[1];
-        const token_data = verifyToken(token);
+        const token_data = accessToken(req);
+        console.log(token_data);
 
         // Create data
         const data = {
